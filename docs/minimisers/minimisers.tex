@@ -20,6 +20,14 @@
 \date{\today}
 \title{On minimisers}
 
+
+\newcommand{\wkwdw}[4]{\ensuremath{\omega(#1, #2\,|\,#3, #4)}}
+\newcommand{\wkmin}[4]{\ensuremath{\mu(#1, #2\,|\,#3, #4)}}
+\newcommand{\wkocc}[4]{\ensuremath{\pi(#1, #2\,|\,#3, #4)}}
+\newcommand{\xwdw}[2]{\ensuremath{\omega(#1, #2)}}
+\newcommand{\xmin}[2]{\ensuremath{\mu(#1, #2)}}
+\newcommand{\xocc}[2]{\ensuremath{\pi(#1, #2)}}
+
 \begin{document} 
 
 \maketitle
@@ -58,7 +66,7 @@ Figure~\ref{fig:minimiser} illustrates this concept.
                                     TCGATCG
                                      CGATCGA
 	\end{verbatim}
-	\caption{Example of a lexicographic minimiser for $w=11, k=7$. Positions where the minimiser occur in the text are indicated by $*$. Note that the minimiser may occur multiple times in the window, possibly with overlaps.} 
+	\caption{Example of a lexicographic minimiser for $w=11, k=7$. Positions where the minimiser occurs in the text are indicated by $*$. Note that the minimiser may occur multiple times in the window, possibly with overlaps.} 
 	\label{fig:minimiser}
 \end{figure}
 
@@ -67,6 +75,21 @@ Schleimer et al \cite{Schleimer2003} and, independently Roberts et al \cite{Robe
 In the seminal works \cite{Schleimer2003, Roberts2004} it has also been shown that, under the hypothesis of independence and equiprobability of the choice of any kmer or a $(w+1,k)$-window as its minimiser, on average a new minimiser comes out at each $(w+1)/2$ successive window displacements. Therefore $w$ also controls the ``sampling rate'' of the indexed kmers and consequently the size of the index. It follows that the efficiency and accuracy of the index is heavily dependent on this parametrisation.
 
 However, in some situations, the optimal choice of $w$ and $k$ may prove elusive. In computational biology, for instance, many times the fragments to be mapped (the patterns) vary considerably in terms of length, composition and error rate. Likewise, different regions of the genome may have varying levels of complexity, like regions with long homopolymers or regions enriched with small repeats. Depending on the combination of the characteristics of the patterns and/or regions of the text, it may be interesting to use different values of $w$ and $k$. In practice, this often amounts to running a mapping tool multiple times with different parametrisations.
+
+
+In what follows we consider an index $I(T)$ built over a text $T=t_0\cdots t_{n-1}$ of length $n$, which is to be used for searching approximate occurrences of a pattern $P=p_0\cdots p_{m-1}$ of length $m$. In addition to that, we use the following notation.
+
+\begin{compactitem}
+\item $\wkwdw Xjwk$ denotes the $(w,k)$-window of $X$ starting at position $j$, that is $\wkwdw Xjwk=X[j:j+w+k-1]$.
+\item $\wkmin Xjwk$ denotes the minimiser the window $\wkwdw Xjwk$.
+\item $\wkocc Xjwk$ denotes the set of occurrences (start positions in $X$) of the minimiser $\wkmin Xjwk$.
+\end{compactitem}
+
+We ommit the parameters $w,k$ whenever the context makes it clear and write simply $\xwdw Xj$, $\xmin Xj$, and $\xocc Xj$.
+
+Query Q1. What are the exact matches of the minimiser of a $(w,k)$-window of $P$ $T$.
+
+Query Q2. What is the  are the exact matches of the minimiser of a $(w,k)$-window of $P$ $T$.
 
 
 \end{document}
